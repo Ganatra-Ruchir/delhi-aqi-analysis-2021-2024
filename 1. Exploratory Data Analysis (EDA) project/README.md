@@ -282,3 +282,35 @@ See `requirements.txt` for full dependency list.
 ---
 
 **Last Updated**: January 14, 2026
+
+
+
+## 📊 Interactive Streamlit Dashboard
+
+The project includes a fully interactive **Streamlit dashboard** (`app.py`) that provides real-time visualization and exploration of Delhi's air quality data.
+
+### Key Dashboard Visualizations
+
+#### 1. **AQI Distribution Analysis**
+   - **Histogram**: Shows frequency distribution of AQI values across 1,461 observations
+   - Mean AQI: 202 (indicated by red dashed line)
+   - Distribution peaks around 100-150, showing higher frequency of moderate pollution
+   - **Box Plot**: Displays quartiles, median (~189), and outliers up to 500
+   - Wide spread indicates high daily variability in air quality
+
+#### 2. **AQI Time Series Trend (2021-2024)**
+   - Blue shaded area: Daily AQI values with high volatility
+   - Red line: 30-day moving average for trend clarity
+   - Clear seasonal patterns:
+     - **Winter (Dec-Feb)**: Worst season with AQI 350-500
+     - **Summer (Mar-May)**: Best season with AQI 100-150
+     - **Monsoon (Jun-Sep)**: Variable, moderate improvement
+     - **Post-monsoon (Oct-Nov)**: Gradual increase to winter
+
+### Running the Dashboard
+
+```bash
+streamlit run app.py
+```
+
+Access at `http://localhost:8501` with interactive filters and zoom capabilities.
