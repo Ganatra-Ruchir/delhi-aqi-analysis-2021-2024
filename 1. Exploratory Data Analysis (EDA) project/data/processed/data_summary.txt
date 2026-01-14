@@ -1,0 +1,29 @@
+DATA CLEANING PIPELINE SUMMARY
+============================================================
+
+Total Rows: 1461
+Total Columns: 21
+Date Range: 2021-01-01 00:00:00 to 2024-12-31 00:00:00
+
+Columns:
+  - Date
+  - Month
+  - Year
+  - Holidays_Count
+  - Days
+  - PM2.5
+  - PM10
+  - NO2
+  - SO2
+  - CO
+  - Ozone
+  - AQI
+  - DateTime
+  - Season
+  - IsWeekend
+  - DayName
+  - AvgPollution
+  - MaxPollution
+  - MinPollution
+  - StdPollution
+  - AQI_Category
