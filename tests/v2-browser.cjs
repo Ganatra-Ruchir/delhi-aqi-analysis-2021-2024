@@ -10,5 +10,9 @@ await p.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domconten
    await p.locator('#metric').selectOption('CO');assert.match(await p.locator('#trendTitle').innerText(),/CO/);await p.locator('#threshold').fill('500');assert.match(await p.locator('#exceedance').innerText(),/^0 days/);
    const dl=p.waitForEvent('download');await p.locator('#summary').click();assert.equal((await dl).suggestedFilename(),'delhi-research-summary.md');
    await p.locator('#start').fill('2024-12-01');assert.match(await p.locator('#status').innerText(),/Start date is after/);await p.locator('#reset').click();
+
+await p.goto('http://127.0.0.1:'+server.address().port+'/?start=2024-02-30');assert.equal(await p.locator('#start').inputValue(),'2021-01-01');await p.goto('http://127.0.0.1:'+server.address().port+'/?start=2025-01-01&end=2025-01-31');assert.match(await p.locator('#status').innerText(),/0 daily/);
+await p.locator('#reset').click();await p.evaluate(()=>{history.replaceState=()=>{throw Error('rate limited');};navigator.clipboard.writeText=async text=>{window.copiedView=text;};});await p.locator('#metric').selectOption('PM10');await p.locator('#share').click();assert.equal(new URL(await p.evaluate(()=>window.copiedView)).searchParams.get('metric'),'PM10');
+
 assert.deepEqual(errors,[],'Unexpected page errors');await p.setViewportSize({width:390,height:844});await p.waitForTimeout(200);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false,'Mobile horizontal overflow');console.log('V2 workflow, exports, reload behavior and mobile checks passed.');
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}})().catch(e=>{console.error(e);process.exitCode=1;});
